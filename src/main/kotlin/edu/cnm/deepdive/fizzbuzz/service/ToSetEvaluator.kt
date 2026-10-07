@@ -20,7 +20,15 @@ class ToSetEvaluator : FizzBuzzEvaluator<Set<FizzBuzz>> {
      */
     override fun evaluate(input: Int): Set<FizzBuzz> {
         require(input >= 0)
-        TODO("Not yet implemented")
+        val evaluation = mutableSetOf<FizzBuzz>()
+        if (input % 3 == 0) {
+            evaluation += FizzBuzz.FIZZ
+        }
+        if (input % 5 == 0) {
+            evaluation += FizzBuzz.BUZZ
+        }
+        return evaluation
+
     }
 
 }
