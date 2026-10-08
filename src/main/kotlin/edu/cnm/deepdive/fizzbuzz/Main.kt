@@ -15,6 +15,9 @@
  */
 package edu.cnm.deepdive.fizzbuzz
 
+import edu.cnm.deepdive.fizzbuzz.service.ToSetEvaluator
+import edu.cnm.deepdive.fizzbuzz.view.FromSetView
+
 private const val DEFAULT_UPPER_BOUND: Int = 100
 
 /**
@@ -37,5 +40,14 @@ private const val DEFAULT_UPPER_BOUND: Int = 100
  * argument cannot be parsed as an [Int], or specifies a value less than 1.
  */
 fun main(args: Array<String>) {
-    TODO("Implement as described in the KDoc comments.")
+    val upperLimit = if (args.isEmpty()) DEFAULT_UPPER_BOUND else args[0].toInt()
+    val evaluator = ToSetEvaluator()
+    val view = FromSetView()
+
+    for (count in 1..upperLimit) {
+        val evaluation = evaluator.evaluate(count)
+        val representation = view.render(count, evaluation)
+        println(representation)
+
+    }
 }
