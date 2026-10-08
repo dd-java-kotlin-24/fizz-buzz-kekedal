@@ -1,6 +1,6 @@
 package edu.cnm.deepdive.fizzbuzz.view
 
-import edu.cnm.deepdive.fizzbuzz.service.FizzBuzz
+import edu.cnm.deepdive.fizzbuzz.model.FizzBuzz
 
 class FromSetView : FizzBuzzView<Set<FizzBuzz>> {
     /**
@@ -28,13 +28,14 @@ class FromSetView : FizzBuzzView<Set<FizzBuzz>> {
             (evaluation == setOf(FizzBuzz.FIZZ, FizzBuzz.BUZZ)) -> FIZZ_BUZZ_REPRESENTATION
             else -> value.toString()
         }
+
     }
 
     companion object {
 
         const val FIZZ_REPRESENTATION = "FIZZ"
         const val BUZZ_REPRESENTATION = "BUZZ"
-        const val FIZZ_BUZZ_REPRESENTATION = "FIZZBUZZ"
+        const val FIZZ_BUZZ_REPRESENTATION = FIZZ_REPRESENTATION + BUZZ_REPRESENTATION
 
     }
 
