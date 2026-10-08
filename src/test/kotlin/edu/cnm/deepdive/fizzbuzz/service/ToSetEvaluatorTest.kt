@@ -10,7 +10,7 @@ class ToSetEvaluatorTest {
 
     @ParameterizedTest
     @ValueSource(ints = [-1, -3, -5, -15, Int.MIN_VALUE])
-    fun evaluate(input: Int) {
+    fun `evaluate throws IllegalArgumentException for negative values` (input: Int) {
         val evaluator = ToSetEvaluator()
         assertFailsWith<IllegalArgumentException> { evaluator.evaluate(input) }
     }
@@ -24,21 +24,21 @@ class ToSetEvaluatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [5, 10, 20, 50, Int.MAX_VALUE - 2])
+    @ValueSource(ints = [5, 25, 50, 100, Int.MAX_VALUE - 2])
     fun `evaluate returns Set(Buzz) for multiples of 5`(input: Int) {
         val evaluator = ToSetEvaluator()
         assertEquals(setOf(FizzBuzz.BUZZ), evaluator.evaluate(input))
 
     }
     @ParameterizedTest
-    @ValueSource(ints = [15, 30, 45, 60, Int.MAX_VALUE - 7])
+    @ValueSource(ints = [0, 15, 45, 105, Int.MAX_VALUE - 7])
     fun `evaluate returns Set(FizzBuzz) for multiples of 3 and 5`(input: Int) {
         val evaluator = ToSetEvaluator()
         assertEquals(setOf(FizzBuzz.FIZZ, FizzBuzz.BUZZ), evaluator.evaluate(input))
 
     }
     @ParameterizedTest
-    @ValueSource(ints = [Int.MAX_VALUE])
+    @ValueSource(ints = [1, 2, 16, 128, Int.MAX_VALUE])
     fun `evaluate returns EmptySet(FizzBuzz) when no multiples of 3 or 5`(input: Int) {
         val evaluator = ToSetEvaluator()
         assertEquals(emptySet<FizzBuzz>(), evaluator.evaluate(input))
