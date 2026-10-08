@@ -20,6 +20,18 @@ class FromSetViewTest {
         assertEquals(expected, view.render(value, evaluation))
 
     }
+    @ParameterizedTest
+    @MethodSource("fizz test cases")
+    fun `render returns FIZZ for setOf(FIZZ)`(
+        value: Int,
+        evaluation: Set<FizzBuzz>,
+        expected: String
+
+    ){
+        val view = FromSetView()
+        assertEquals(expected, view.render(value, evaluation))
+
+    }
     companion object {
 
         @JvmStatic
@@ -35,5 +47,21 @@ class FromSetViewTest {
 
             )
         }
+
+        @JvmStatic
+        fun`fizz test cases`(): Stream<Arguments> {
+            val evaluation = setOf(FizzBuzz.FIZZ)
+            return Stream.of(
+                Arguments.of(3, evaluation, FromSetView.FIZZ_REPRESENTATION),
+                Arguments.of(6, evaluation, FromSetView.FIZZ_REPRESENTATION),
+                Arguments.of(21, evaluation, FromSetView.FIZZ_REPRESENTATION),
+                Arguments.of(99, evaluation, FromSetView.FIZZ_REPRESENTATION),
+                Arguments.of(Int.MAX_VALUE - 1, evaluation, FromSetView.FIZZ_REPRESENTATION),
+
+
+
+                )
+        }
+
     }
 }
